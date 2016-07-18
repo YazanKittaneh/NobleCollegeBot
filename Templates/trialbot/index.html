@@ -1,0 +1,47 @@
+<html> <head>
+<script type="text/javascript" src="/media/web/jquery.js"></script>
+<title>{% block title %}A Generic Title{% endblock %}</title>
+</head>
+
+<body>
+
+  <table>
+    {% for item in query_results %}
+      <tr>
+        <td>{{ item.UNITID }}</td>
+        <td>{{ item.INSTNM }}</td>
+        <td>{{ item.CITY }}</td>
+        <td>{{ item.UNITID }}</td>
+        <td>{{ item.INSTNM }}</td>
+        <td>{{ item.CITY  }}</td>
+        <td>{{ item.STABBR  }}</td>
+        <td>{{ item.TYPE  }}</td>
+        <td>{{ item.DISTFROMCHICAGO  }}</td> ##Make abstract to different location
+        <td>{{ item.SIMPLEBARRONS  }}</td>
+        <td>{{ item.NETPRICE0_30  }}</td>
+        <td>{{ item.NETPRICE30_48  }}</td>
+        <td>{{ item.PERCENT_MALE  }}</td>
+        <td>{{ item.ADJ6YRGRAD  }}</td>
+        <td>{{ item.ADJ6YRGRAD_AA_HISP	= models.CharField(null=True, default='Test', max_length=50)
+        <td>{{ item.RETENTIONAAH  }}</td>
+        <td>{{ item.ADJACT25  }}</td>
+        <td>{{ item.WEBSITE	= models.CharField(null=True, default='Test', max_length=50)
+        <td>{{ item.MEAN_UNMET_NEED  }}</td>
+        <td>{{ item.MIN_UNMET_NEED	= models.CharField(null=True, default='Test', max_length=50)
+        <td>{{ item.MAX_UNMET_NEED  }}</td>
+        <td>{{ item.LOCALE  }}</td>
+        <td>{{ item.NUMBER_UNDERGRADS  }}</td>
+        <td>{{ item.PUB_PRIVATE  }}</td>
+        <td>{{ item.MONEYFY14_CATEGORY  }}</td>
+        <td>{{ item.NOBLEALUMNI  }}</td> #not sure if char or number, blank on spreadsheet
+        <td>{{ item.NETPRICE48_75  }}</td>
+        <td>{{ item.PERCENT_PELL  }}</td>
+        <td>{{ item.MONEYFY13  }}</td>
+        <td>{{ item.MONEYFY14  }}</td>
+        <td>{{ item.ADJACT50  }}</td>
+      </tr>
+    {% endfor %}
+</table>
+
+
+</body>
