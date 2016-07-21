@@ -13,7 +13,12 @@
 </head>
 
 <body>
+  <script type="text/javascript">
+    data_from_django = {{ my_data }};
+    widget.init(data_from_django);
+  </script>
 
+<!--
   <table>
     {% for item in query_results %}
       <tr>
@@ -51,6 +56,7 @@
       </tr>
     {% endfor %}
 </table>
+-->
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
