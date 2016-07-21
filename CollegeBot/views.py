@@ -21,8 +21,28 @@ def custom(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
     query_results = Custom_Coefficient.objects.all()
     return render(request, 'CollegeBot/custom_coefficient.html', {'query_results': query_results})
 
+"""
+STUDENT MODEL CONTROLLERS
+"""
+def all_student(request):
+    all_student = Student.objects.all()
+    return render(request, 'CollegeBot/all_student.html', {'all_student': all_student})
+
+class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = CollegeSerializer
+
+def student(request, student_id):
+    student = Student.objects.get(pk=college_id)
+    return render(request, 'CollegeBot/Student.html', {'Student':student})
+
+
+"""
+COLLEGE MODEL CONTROLLERS
+"""
 def all_colleges(request):
-    return render(request, 'CollegeBot/all_colleges.html')
+    all_colleges = College.objects.all()
+    return render(request, 'CollegeBot/all_colleges.html', {'all_colleges': all_colleges})
 
 class CollegeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = College.objects.all()
@@ -31,3 +51,34 @@ class CollegeDetail(generics.RetrieveUpdateDestroyAPIView):
 def college(request, college_id):
     college = College.objects.get(pk=college_id)
     return render(request, 'CollegeBot/College.html', {'College':college})
+
+
+"""
+COEFFICIENT MODEL CONTROLLERS
+"""
+def all_coefficients(request):
+    all_coefficients = Coefficient.objects.all()
+    return render(request, 'CollegeBot/all_coefficients.html', {'all_coefficients': all_coefficients})
+
+class CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Coefficient.objects.all()
+    serializer_class = CoefficientSerializer
+
+def coefficient(request, coefficient_id):
+    coefficient = Coefficient.objects.get(pk=coefficient_id)
+    return render(request, 'CollegeBot/Coefficient.html', {'Coefficient':coefficient})
+
+"""
+CUSTOM COEFFICIENT MODEL CONTROLLERS
+"""
+def all_coefficients(request):
+    all_coefficients = Coefficient.objects.all()
+    return render(request, 'CoefficientBot/all_coefficients.html', {'all_coefficients': all_coefficients})
+
+class CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Coefficient.objects.all()
+    serializer_class = CoefficientSerializer
+
+def coefficient(request, coefficient_id):
+    coefficient = Coefficient.objects.get(pk=coefficient_id)
+    return render(request, 'CoefficientBot/Coefficient.html', {'Coefficient':coefficient})
