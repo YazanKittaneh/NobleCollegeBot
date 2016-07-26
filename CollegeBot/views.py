@@ -78,6 +78,6 @@ class Custom_CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Custom_Coefficient.objects.all()
     serializer_class = Custom_CoefficientSerializer
 
-def custom_coefficient(request, coefficient_id):
-    custom_coefficient = Custom_Coefficient.objects.get(pk=custom_coefficient_id)
+def custom_coefficient(request, custom_coefficient_id):
+    custom_coefficient =  Custom_Coefficient.objects.get(pk=custom_coefficient_id)
     return render(request, 'CollegeBot/api/object/custom_coefficient.html', {'Custom_Coefficient':coefficient})
