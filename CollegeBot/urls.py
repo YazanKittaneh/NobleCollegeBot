@@ -43,3 +43,5 @@ urlpatterns = [
     url(r'^custom_coefficient/all/$', 'CollegeBot.views.all_custom_coefficients'),
 
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
