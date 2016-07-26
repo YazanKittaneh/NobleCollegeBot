@@ -1,12 +1,12 @@
+# View controller for the django app. The controller section handles the api
+# calls for each
+# created by Yazan Kittaneh 07-12-2016
+
 from django.shortcuts import render
-#from django.utils import simplejson
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Student, College, Coefficient, Custom_Coefficient
-#from django.shortcuts import render_template_to_response
 from rest_framework import generics
 from .serializers import CollegeSerializer, CoefficientSerializer, Custom_CoefficientSerializer
-# created by Yazan Kittaneh 07-12-2016
-# *1 cite: https://stackoverflow.com/questions/14160221/django-read-upload-a-csv
 
 def index(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
     query_results = College.objects.all()
@@ -26,7 +26,7 @@ STUDENT MODEL CONTROLLERS
 """
 def all_student(request):
     all_student = Student.objects.all()
-    return render(request, 'CollegeBot/all_student.html', {'all_student': all_student})
+    return render(request, 'CollegeBot/API/all/all_student.html', {'all_student': all_student})
 
 class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
@@ -34,7 +34,7 @@ class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
 
 def student(request, student_id):
     student = Student.objects.get(pk=college_id)
-    return render(request, 'CollegeBot/Student.html', {'Student':student})
+    return render(request, 'CollegeBot/api/object/student.html', {'Student':student})
 
 
 """
@@ -42,7 +42,7 @@ COLLEGE MODEL CONTROLLERS
 """
 def all_colleges(request):
     all_colleges = College.objects.all()
-    return render(request, 'CollegeBot/all_colleges.html', {'all_colleges': all_colleges})
+    return render(request, 'CollegeBot/api/all/all_colleges.html', {'all_colleges': all_colleges})
 
 class CollegeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = College.objects.all()
@@ -50,30 +50,14 @@ class CollegeDetail(generics.RetrieveUpdateDestroyAPIView):
 
 def college(request, college_id):
     college = College.objects.get(pk=college_id)
-    return render(request, 'CollegeBot/College.html', {'College':college})
-
+    return render(request, 'CollegeBot/api/object/college.html', {'College':college})
 
 """
 COEFFICIENT MODEL CONTROLLERS
 """
-def all_custom_coefficients(request):
-    all_custom_coefficients = Custom_Coefficient.objects.all()
-    return render(request, 'CollegeBot/all_custom_coefficients.html', {'all_custom_coefficients': all_custom_coefficients})
-
-class Custom_CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Custom_Coefficient.objects.all()
-    serializer_class = Custom_CoefficientSerializer
-
-def custom_coefficient(request, coefficient_id):
-    custom_coefficient = Custom_Coefficient.objects.get(pk=coefficient_id)
-    return render(request, 'CollegeBot/Custom_Coefficient.html', {'Custom_Coefficient':coefficient})
-
-"""
-CUSTOM COEFFICIENT MODEL CONTROLLERS
-"""
 def all_coefficients(request):
     all_coefficients = Coefficient.objects.all()
-    return render(request, 'CollegeBot/all_coefficients.html', {'all_coefficients': all_coefficients})
+    return render(request, 'CollegeBot/api/all/all_coefficients.html', {'all_coefficients': all_coefficients})
 
 class CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Coefficient.objects.all()
@@ -81,4 +65,19 @@ class CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
 
 def coefficient(request, coefficient_id):
     coefficient = Coefficient.objects.get(pk=coefficient_id)
-    return render(request, 'CollegeBot/Coefficient.html', {'Coefficient':coefficient})
+    return render(request, 'CollegeBot/api/object/Coefficient.html', {'Coefficient':coefficient})
+
+"""
+CUSTOM COEFFICIENT MODEL CONTROLLERS
+"""
+def all_custom_coefficients(request):
+    all_custom_coefficients = Custom_Coefficient.objects.all()
+    return render(request, 'CollegeBot/api/all/all_custom_coefficients.html', {'all_custom_coefficients': all_custom_coefficients})
+
+class Custom_CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Custom_Coefficient.objects.all()
+    serializer_class = Custom_CoefficientSerializer
+
+def custom_coefficient(request, coefficient_id):
+    custom_coefficient = Custom_Coefficient.objects.get(pk=custom_coefficient_id)
+    return render(request, 'CollegeBot/api/object/custom_coefficient.html', {'Custom_Coefficient':coefficient})
