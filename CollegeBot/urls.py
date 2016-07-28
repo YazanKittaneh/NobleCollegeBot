@@ -3,7 +3,7 @@ from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    #url(r'^$', 'CollegeBot.views.all_colleges'),
+    url(r'^$', 'CollegeBot.views.testJS'),
     #url(r'^coefficient$', views.coefficient, name='coefficient'),
     #url(r'^custom$', views.custom, name='custom'),
 

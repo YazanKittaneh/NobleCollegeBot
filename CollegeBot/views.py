@@ -21,6 +21,12 @@ def custom(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
     query_results = Custom_Coefficient.objects.all()
     return render(request, 'CollegeBot/custom_coefficient.html', {'query_results': query_results})
 
+
+def testJS(request):
+    return render(request, 'CollegeBot/main.html')
+
+
+
 """
 STUDENT MODEL CONTROLLERS
 """
