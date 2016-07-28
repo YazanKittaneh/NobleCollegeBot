@@ -3,19 +3,12 @@ var ReactDOM = require('react-dom')
 
 var Colleges =[];
 
-
-var CollegeComponent = React.createClass({
-  getInitialState: function() {
-    return {customText: "This comes before"}
-  },
-  customClickFunction: function() {
-    this.setState({customText: "You clicked the button"});
-  },
-  render: function (){
+//College class that renders all colleges given to it
+class College extends React.Component {
+  render() {
     var testStyle = { fontSize: '18px', marginRight: '20px'};
     return (
       <div style={testStyle}>
-        <button onClick={this.customClickFunction}>ClickMe</button>
         {this.props.colleges.map(function (college) {
           <College
           UNITID={college.UNITID}
@@ -51,26 +44,20 @@ var CollegeComponent = React.createClass({
           ADJACT50={college.ADJACT50  }
           />
         })}
-
       </div>
-    )
+    );
   }
-});
-
-React.Component{
-render(
-  $.ajax({
-    url: 'api/college/all/',
-    dataType: 'json',
-    //data: Colleges,
-    jsonpCallback: "localJsonpCallback",
-    success: function(data){
-        //this.Colleges({data:data})
-         //<CollegeComponent Colleges={recievedData} />
-       }.bind(this)
-  })
-);
 }
+
+    var colleges =  $.ajax({
+        url: 'api/college/all/',
+        dataType: 'json',
+        //data: Colleges,
+        jsonpCallback: "localJsonpCallback",
+        success: function(data){
+            return(data);
+           }.bind(this)
+      });
 
 function localJsonpCallback(json) {
     console.log(json);

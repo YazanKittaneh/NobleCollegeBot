@@ -57,8 +57,7 @@ var CollegeComponent = React.createClass({
   }
 });
 
-React.Component{
-render(
+React.render(
   $.ajax({
     url: 'api/college/all/',
     dataType: 'json',
@@ -70,7 +69,7 @@ render(
        }.bind(this)
   })
 );
-}
+
 
 function localJsonpCallback(json) {
     console.log(json);
