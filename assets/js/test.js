@@ -57,21 +57,28 @@ var CollegeComponent = React.createClass({
   }
 });
 
-React.render(
+React.Component{
+render(
   $.ajax({
-    url: '127.0.0.1:8000/CollegeBot/api/college/all/',
+    url: 'api/college/all/',
     dataType: 'json',
-    method: 'GET',
-    data: getData,
+    //data: Colleges,
+    jsonpCallback: "localJsonpCallback",
     success: function(data){
-         <CollegeComponent Colleges=data />
-       }
-  });
-)
+        //this.Colleges({data:data})
+         //<CollegeComponent Colleges={recievedData} />
+       }.bind(this)
+  })
+);
+}
+
+function localJsonpCallback(json) {
+    console.log(json);
+}
 
 var TableView = React.createClass({displayName: 'TableView',
   render: function() {
-    return {
+    return (
       <div>
         <tr>
           <td>{ this.college.UNITID }</td>
@@ -93,7 +100,7 @@ var TableView = React.createClass({displayName: 'TableView',
           <td>{ this.college.ADJACT25  }</td>
           <td>{ this.college.WEBSITE	}</td>
           <td>{ this.college.MEAN_UNMET_NEED  }</td>
-          <td>{ this.college.MIN_UNMET_NEED	}</td
+          <td>{ this.college.MIN_UNMET_NEED	}</td>
           <td>{ this.college.MAX_UNMET_NEED  }</td>
           <td>{ this.college.LOCALE  }</td>
           <td>{ this.college.NUMBER_UNDERGRADS  }</td>
@@ -107,6 +114,10 @@ var TableView = React.createClass({displayName: 'TableView',
           <td>{ this.college.ADJACT50  }</td>
         </tr>
       </div>
-      }
+    )
   }
 });
+
+
+
+ReactDOM.render(<CollegeComponent />, document.getElementById('TableView'));

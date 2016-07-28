@@ -1,0 +1,26 @@
+{
+  "name": "noblebot",
+  "version": "1.0.0",
+  "description": "package manager for NobleBot react plugin",
+  "main": "jquery.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YazanKittaneh/NobleCollegeBot.git"
+  },
+  "keywords": [
+    "npm",
+    "react",
+    "django",
+    "package",
+    "manager"
+  ],
+  "author": "Yazan Kittaneh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YazanKittaneh/NobleCollegeBot/issues"
+  },
+  "homepage": "https://github.com/YazanKittaneh/NobleCollegeBot#readme"
+}

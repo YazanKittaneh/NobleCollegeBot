@@ -23,7 +23,7 @@ def custom(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
 
 
 def testJS(request):
-    return render(request, 'CollegeBot/main.html')
+    return render(request, 'CollegeBot/test.html')
 
 
 

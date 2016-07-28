@@ -1,14 +1,14 @@
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html>
 <head>
   {% load staticfiles %}
-  <script type="text/javascript" src={% static 'javascript/test.js' %}></script>
   <title>try</title>
 </head>
 
 <body>
-
     <div id="TableView"></div>
+    {% render_bundle 'main' %}
 
 </body>
 </html>
