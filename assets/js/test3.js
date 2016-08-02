@@ -16,10 +16,12 @@ var Colleges = React.createClass({
         jsonpCallback: "localJsonpCallback",
         success: function(data){
           this.state.college.map(function (data) {
-            this.setState("colleges", data);
-          }.bind(this)
-  });
-  },
+            this.setState("college", data);
+          }.bind(this));
+        }
+      });
+    },
+
 
   componentWillUnmount: function() {
     },
@@ -28,41 +30,41 @@ var Colleges = React.createClass({
     return (
       <div>
         <tr>
-          <td>{ this.college.UNITID }</td>
-          <td>{ this.college.INSTNM }</td>
-          <td>{ this.college.CITY }</td>
-          <td>{ this.college.UNITID }</td>
-          <td>{ this.college.INSTNM }</td>
-          <td>{ this.college.CITY  }</td>
-          <td>{ this.college.STABBR  }</td>
-          <td>{ this.college.TYPE  }</td>
-          <td>{ this.college.DISTFROMCHICAGO  }</td>
-          <td>{ this.college.SIMPLEBARRONS  }</td>
-          <td>{ this.college.NETPRICE0_30  }</td>
-          <td>{ this.college.NETPRICE30_48  }</td>
-          <td>{ this.college.PERCENT_MALE  }</td>
-          <td>{ this.college.ADJ6YRGRAD  }</td>
-          <td>{ this.college.ADJ6YRGRAD_AA_HISP}</td>
-          <td>{ this.college.RETENTIONAAH  }</td>
-          <td>{ this.college.ADJACT25  }</td>
-          <td>{ this.college.WEBSITE	}</td>
-          <td>{ this.college.MEAN_UNMET_NEED  }</td>
-          <td>{ this.college.MIN_UNMET_NEED	}</td>
-          <td>{ this.college.MAX_UNMET_NEED  }</td>
-          <td>{ this.college.LOCALE  }</td>
-          <td>{ this.college.NUMBER_UNDERGRADS  }</td>
-          <td>{ this.college.PUB_PRIVATE  }</td>
-          <td>{ this.college.MONEYFY14_CATEGORY  }</td>
-          <td>{ this.college.NOBLEALUMNI  }</td>
-          <td>{ this.college.NETPRICE48_75  }</td>
-          <td>{ this.college.PERCENT_PELL  }</td>
-          <td>{ this.college.MONEYFY13  }</td>
-          <td>{ this.college.MONEYFY14  }</td>
-          <td>{ this.college.ADJACT50  }</td>
+          <td>{ this.state.college.UNITID }</td>
+          <td>{ this.state.college.INSTNM }</td>
+          <td>{ this.state.college.CITY }</td>
+          <td>{ this.state.college.UNITID }</td>
+          <td>{ this.state.college.INSTNM }</td>
+          <td>{ this.state.college.CITY  }</td>
+          <td>{ this.state.college.STABBR  }</td>
+          <td>{ this.state.college.TYPE  }</td>
+          <td>{ this.state.college.DISTFROMCHICAGO  }</td>
+          <td>{ this.state.college.SIMPLEBARRONS  }</td>
+          <td>{ this.state.college.NETPRICE0_30  }</td>
+          <td>{ this.state.college.NETPRICE30_48  }</td>
+          <td>{ this.state.college.PERCENT_MALE  }</td>
+          <td>{ this.state.college.ADJ6YRGRAD  }</td>
+          <td>{ this.state.college.ADJ6YRGRAD_AA_HISP}</td>
+          <td>{ this.state.college.RETENTIONAAH  }</td>
+          <td>{ this.state.college.ADJACT25  }</td>
+          <td>{ this.state.college.WEBSITE	}</td>
+          <td>{ this.state.college.MEAN_UNMET_NEED  }</td>
+          <td>{ this.state.college.MIN_UNMET_NEED	}</td>
+          <td>{ this.state.college.MAX_UNMET_NEED  }</td>
+          <td>{ this.state.college.LOCALE  }</td>
+          <td>{ this.state.college.NUMBER_UNDERGRADS  }</td>
+          <td>{ this.state.college.PUB_PRIVATE  }</td>
+          <td>{ this.state.college.MONEYFY14_CATEGORY  }</td>
+          <td>{ this.state.college.NOBLEALUMNI  }</td>
+          <td>{ this.state.college.NETPRICE48_75  }</td>
+          <td>{ this.state.college.PERCENT_PELL  }</td>
+          <td>{ this.state.college.MONEYFY13  }</td>
+          <td>{ this.state.college.MONEYFY14  }</td>
+          <td>{ this.state.college.ADJACT50  }</td>
         </tr>
       </div>
     )
   }
 });
 
-ReactDOM.render(<College />, document.getElementById('TableView'));
+ReactDOM.render(<Colleges />, document.getElementById('TableView'));
