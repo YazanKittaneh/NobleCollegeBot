@@ -6,7 +6,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Student, College, Coefficient, Custom_Coefficient
 from rest_framework import generics
-from .serializers import CollegeSerializer, CoefficientSerializer, Custom_CoefficientSerializer
+from .serializers import CollegeSerializer, CoefficientSerializer, CollegeListSerializer, Custom_CoefficientSerializer
+from rest_framework.views import APIView
 
 def index(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
     query_results = College.objects.all()
@@ -46,13 +47,23 @@ def student(request, student_id):
 """
 COLLEGE MODEL CONTROLLERS
 """
+'''
 def all_colleges(request):
     all_colleges = College.objects.all()
     return render(request, 'CollegeBot/api/all/all_colleges.html', {'all_colleges': all_colleges})
+'''
+
+
+
 
 class CollegeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = College.objects.all()
     serializer_class = CollegeSerializer
+
+    def all_colleges(request):
+        all_colleges = College.objects.all()
+        serializer = CollegeSerializer(all_colleges, many=True)
+        return Response(serializer.data)
 
 def college(request, college_id):
     college = College.objects.get(pk=college_id)

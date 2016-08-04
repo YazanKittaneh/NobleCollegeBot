@@ -14,6 +14,9 @@ var UserGist = React.createClass({
   componentDidMount: function() {
     //this.serverRequest
     console.log("componentDidMount");
+    /* TODO: turn this into taking all of the json data, not individually
+       Cite: https://www.sitepoint.com/ajaxjquery-getjson-simple-example/
+
     var count = 1;
     for(; count<7; count++) {
       var countUrl = "api/college/"+count;
@@ -33,7 +36,26 @@ var UserGist = React.createClass({
         });
         console.log("done with ajax # "+count);
     }
-
+    */
+    var count = 1;
+    for(; count<7; count++) {
+      var countUrl = "api/college/all";
+      $.ajax({
+          url: countUrl,
+          dataType: 'json',
+          jsonpCallback: "localJsonpCallback",
+          success: function(data){
+            //this.setState({data:data});
+            console.log("this is what success looks like "+count+": "+data.CITY);//this.props.url, status, err.toString());
+            this.setState({username:data.TYPE});
+            this.setState({lastGistUrl:data.INSTNM});
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error("didn't work :/ ", error.toString());//this.props.url, status, err.toString());
+          }.bind(this)
+        });
+        console.log("done with ajax # "+count);
+    }
   },
 
   componentWillUnmount: function() {
