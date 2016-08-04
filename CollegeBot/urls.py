@@ -12,12 +12,13 @@ urlpatterns = [
     url(r'^college/(?P<college_id>\d+)$', 'CollegeBot.views.college'),
     url(r'^api/college/(?P<pk>\d+)$', views.CollegeDetail.as_view()),
     #url(r'^api/college/all$', 'CollegeBot.views.all_colleges'),
-    url(r'^api/college/all$', views.CollegeDetail.all_colleges.as_view()),
-
+    url(r'^api/college/all$', views.CollegeDetail.as_view()),
+    #TODO: Figure out why the as_view() method can't be called onto the CollegeDetail.list method
     # '/' ending
     url(r'^college/(?P<college_id>\d+)/$', 'CollegeBot.views.college'),
     url(r'^api/college/(?P<pk>\d+)/$', views.CollegeDetail.as_view()),
-    url(r'^api/college/all/$', 'CollegeBot.views.all_colleges'),
+    #url(r'^api/college/all/$', 'CollegeBot.views.all_colleges'),
+    url(r'^api/college/all/$', views.CollegeDetail.as_view()),
 
 
     ###Coefficient API urls###

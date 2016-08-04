@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Student, College, Coefficient, Custom_Coefficient
 from rest_framework import generics
-from .serializers import CollegeSerializer, CoefficientSerializer, CollegeListSerializer, Custom_CoefficientSerializer
+from .serializers import CollegeSerializer, CoefficientSerializer, Custom_CoefficientSerializer
 from rest_framework.views import APIView
 
 def index(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
@@ -54,16 +54,18 @@ def all_colleges(request):
 '''
 
 
-
-
+#TODO : I should be able to call the list method to get all the college objects
+# Can be found here: https://www.youtube.com/watch?v=QW_5xCCPWFk
 class CollegeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = College.objects.all()
     serializer_class = CollegeSerializer
 
-    def all_colleges(request):
-        all_colleges = College.objects.all()
-        serializer = CollegeSerializer(all_colleges, many=True)
+    def list(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        serializer = CollegeSerializer(queryset, many=True)
         return Response(serializer.data)
+
 
 def college(request, college_id):
     college = College.objects.get(pk=college_id)
