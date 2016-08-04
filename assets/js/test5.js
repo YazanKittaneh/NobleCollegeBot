@@ -6,6 +6,7 @@ var UserGist = React.createClass({
     return {
       username: '',
       lastGistUrl: ''
+
     };
   },
 
@@ -13,17 +14,26 @@ var UserGist = React.createClass({
   componentDidMount: function() {
     //this.serverRequest
     console.log("componentDidMount");
-    $.ajax({
-        url: 'api/college/all/',
-        dataType: 'json',
-        jsonpCallback: "localJsonpCallback",
-        success: function(data){
-          return (
-            <UserGist username={data[1][0]} lastGistUrl={data[1][1]} />
-          );
-        }.bind(this)
-      });
-      console.log("done with ajax");
+    var count = 1;
+    for(; count<7; count++) {
+      var countUrl = "api/college/"+count;
+      $.ajax({
+          url: countUrl,
+          dataType: 'json',
+          jsonpCallback: "localJsonpCallback",
+          success: function(data){
+            //this.setState({data:data});
+            console.log("this is what success looks like "+count+": "+data.CITY);//this.props.url, status, err.toString());
+            this.setState({username:data.TYPE});
+            this.setState({lastGistUrl:data.INSTNM});
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error("didn't work :/ ", error.toString());//this.props.url, status, err.toString());
+          }.bind(this)
+        });
+        console.log("done with ajax # "+count);
+    }
+
   },
 
   componentWillUnmount: function() {
@@ -35,7 +45,7 @@ var UserGist = React.createClass({
     return (
       <div>
         <p>{this.state.username}</p>
-        <a href={this.state.lastGistUrl}>here</a>.
+        <a href={this.state.lastGistUrl}>here</a>
       </div>
     );
   }
