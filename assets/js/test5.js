@@ -9,24 +9,32 @@ var UserGist = React.createClass({
     };
   },
 
+  //this function executes while react is rendering
   componentDidMount: function() {
-    this.serverRequest = $.get(this.props.source, function (result) {
-      var lastGist = result[0];
-      this.setState({
-        username: lastGist.owner.login,
-        lastGistUrl: lastGist.html_url
+    //this.serverRequest
+    console.log("componentDidMount");
+    $.ajax({
+        url: 'api/college/all/',
+        dataType: 'json',
+        jsonpCallback: "localJsonpCallback",
+        success: function(data){
+          return (
+            <UserGist username={data[1][0]} lastGistUrl={data[1][1]} />
+          );
+        }.bind(this)
       });
-    }.bind(this));
+      console.log("done with ajax");
   },
 
   componentWillUnmount: function() {
-    this.serverRequest.abort();
+    console.log("componentWillUnmount");
   },
 
   render: function() {
+    console.log("in the render!");
     return (
       <div>
-        {this.state.username}
+        <p>{this.state.username}</p>
         <a href={this.state.lastGistUrl}>here</a>.
       </div>
     );
@@ -34,6 +42,6 @@ var UserGist = React.createClass({
 });
 
 ReactDOM.render(
-  <UserGist source="https://api.github.com/users/octocat/gists" />,
-  mountNode
+  <UserGist />,
+  document.getElementById("TableView")
 );
