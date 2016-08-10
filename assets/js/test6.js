@@ -1,40 +1,10 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 
-var UserGist = React.createClass({
+var Colleges = React.createClass({
   getInitialState: function() {
     return {
-      UNITID: '',
-      INSTNM: '',
-      CITY: '',
-      UNITID: '',
-      INSTNM: '',
-      CITY: '',
-      STABBR: '',
-      TYPE: '',
-      DISTFROMCHICAGO: '',
-      SIMPLEBARRONS: '',
-      NETPRICE0_30: '',
-      NETPRICE30_48: '',
-      PERCENT_MALE: '',
-      ADJ6YRGRAD: '',
-      ADJ6YRGRAD_AA_HISP: '',
-      RETENTIONAAH: '',
-      ADJACT25: '',
-      WEBSITE: '',
-      MEAN_UNMET_NEED: '',
-      MIN_UNMET_NEED: '',
-      MAX_UNMET_NEED: '',
-      LOCALE: '',
-      NUMBER_UNDERGRADS: '',
-      PUB_PRIVATE: '',
-      MONEYFY14_CATEGORY: '',
-      NOBLEALUMNI: '',
-      NETPRICE48_75: '',
-      PERCENT_PELL: '',
-      MONEYFY13: '',
-      MONEYFY14: '',
-      ADJACT50: ''
+      College: [],
 
     };
   },
@@ -66,9 +36,7 @@ var UserGist = React.createClass({
         console.log("done with ajax # "+count);
     }
     */
-    var count = 1;
-    for(; count<7; count++) {
-      var countUrl = "api/college/"+count;
+      var countUrl = "api/college/all";
       $.ajax({
           url: countUrl,
           dataType: 'json',
@@ -76,9 +44,7 @@ var UserGist = React.createClass({
           success: function(data){
             //this.setState({data:data});
             console.log("this is what success looks like "+count+": "+data.CITY);//this.props.url, status, err.toString());
-            this.setState({UNITID:data.UNITID });
-            this.setState({INSTNM:data.INSTNM });
-            this.setState({CITY:data.CITY });
+            this.setState({Colleges:data });
               /*
             this.setState({STABBR  }</td>
             this.setState({TYPE  }</td>
@@ -126,9 +92,9 @@ var UserGist = React.createClass({
         <table>
           <tbody>
             <tr>
-              <td>{ this.state.UNITID }</td>
-              <td>{ this.state.INSTNM }</td>
-              <td>{ this.state.CITY }</td>
+              <td>{ this.state.Colleges[3].UNITID }</td>
+              <td>{ this.state.Colleges[3].INSTNM }</td>
+              <td>{ this.state.Colleges[3].CITY }</td>
             </tr>
           </tbody>
         </table>
@@ -138,6 +104,6 @@ var UserGist = React.createClass({
 });
 
 ReactDOM.render(
-  <UserGist />,
+  <Colleges />,
   document.getElementById("TableView")
 );

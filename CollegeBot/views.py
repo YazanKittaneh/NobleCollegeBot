@@ -8,6 +8,7 @@ from .models import Student, College, Coefficient, Custom_Coefficient
 from rest_framework import generics
 from .serializers import CollegeSerializer, CoefficientSerializer, Custom_CoefficientSerializer
 from rest_framework.views import APIView
+from rest_framework.response import Response
 
 def index(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
     query_results = College.objects.all()
@@ -60,9 +61,10 @@ class CollegeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = College.objects.all()
     serializer_class = CollegeSerializer
 
-    def list(self, request):
+    def get(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
-        queryset = self.get_queryset()
+        #queryset = get_queryset()
+        queryset = College.objects.all()
         serializer = CollegeSerializer(queryset, many=True)
         return Response(serializer.data)
 
