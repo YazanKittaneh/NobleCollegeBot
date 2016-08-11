@@ -1,109 +1,96 @@
+
 var React = require('react')
 var ReactDOM = require('react-dom')
+var College = require('./College.js').default
 
-var Colleges = React.createClass({
+
+var CollegeList = React.createClass({
+
+  /* run AJAX call to the Django API */
+  loadCollegData: function() {
+    var countUrl = "api/college/all";
+    $.ajax({
+        url: countUrl,
+        dataType: 'json',
+        jsonpCallback: "localJsonpCallback",
+        success: function(data){
+          this.setState({collegelist:data });
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error("didn't work :/ ", error.toString());//this.props.url, status, err.toString());
+        }.bind(this)
+      });
+      console.log("done with ajax # ");
+  },
+
   getInitialState: function() {
     return {
-      College: [],
-
+      collegelist: []
     };
   },
 
   //this function executes while react is rendering
   componentDidMount: function() {
-    //this.serverRequest
     console.log("componentDidMount");
-    /* TODO: turn this into taking all of the json data, not individually
-       Cite: https://www.sitepoint.com/ajaxjquery-getjson-simple-example/
-
-    var count = 1;
-    for(; count<7; count++) {
-      var countUrl = "api/college/"+count;
-      $.ajax({
-          url: countUrl,
-          dataType: 'json',
-          jsonpCallback: "localJsonpCallback",
-          success: function(data){
-            //this.setState({data:data});
-            console.log("this is what success looks like "+count+": "+data.CITY);//this.props.url, status, err.toString());
-            this.setState({username:data.TYPE});
-            this.setState({lastGistUrl:data.INSTNM});
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error("didn't work :/ ", error.toString());//this.props.url, status, err.toString());
-          }.bind(this)
-        });
-        console.log("done with ajax # "+count);
-    }
-    */
-      var countUrl = "api/college/all";
-      $.ajax({
-          url: countUrl,
-          dataType: 'json',
-          jsonpCallback: "localJsonpCallback",
-          success: function(data){
-            //this.setState({data:data});
-            console.log("this is what success looks like "+count+": "+data.CITY);//this.props.url, status, err.toString());
-            this.setState({Colleges:data });
-              /*
-            this.setState({STABBR  }</td>
-            this.setState({TYPE  }</td>
-            this.setState({DISTFROMCHICAGO  }</td>
-            this.setState({SIMPLEBARRONS  }</td>
-            this.setState({NETPRICE0_30  }</td>
-            this.setState({NETPRICE30_48  }</td>
-            this.setState({PERCENT_MALE  }</td>
-            this.setState({ADJ6YRGRAD  }</td>
-            this.setState({ADJ6YRGRAD_AA_HISP}</td>
-            this.setState({RETENTIONAAH  }</td>
-            this.setState({ADJACT25  }</td>
-            this.setState({WEBSITE	}</td>
-            this.setState({MEAN_UNMET_NEED  }</td>
-            this.setState({MIN_UNMET_NEED	}</td>
-            this.setState({MAX_UNMET_NEED  }</td>
-            this.setState({LOCALE  }</td>
-            this.setState({NUMBER_UNDERGRADS  }</td>
-            this.setState({PUB_PRIVATE  }</td>
-            this.setState({MONEYFY14_CATEGORY  }</td>
-            this.setState({NOBLEALUMNI  }</td>
-            this.setState({NETPRICE48_75  }</td>
-            this.setState({PERCENT_PELL  }</td>
-            this.setState({MONEYFY13  }</td>
-            this.setState({MONEYFY14  }</td>
-            this.setState({ADJACT50  }</td>
-            */
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error("didn't work :/ ", error.toString());//this.props.url, status, err.toString());
-          }.bind(this)
-        });
-        console.log("done with ajax # "+count);
-    }
+    this.loadCollegData();
   },
 
+  //necessary method for unmounting async task
   componentWillUnmount: function() {
     console.log("componentWillUnmount");
   },
 
   render: function() {
     console.log("in the render!");
+    count=0;
     return (
-      <div>
-        <table>
-          <tbody>
-            <tr>
-              <td>{ this.state.Colleges[3].UNITID }</td>
-              <td>{ this.state.Colleges[3].INSTNM }</td>
-              <td>{ this.state.Colleges[3].CITY }</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <table>
+      <tbody>
+          {this.state.collegelist.map(function(college) {
+               count++;
+               return <College key={count} collegedata={college}
+               /*
+               UNITID={college.UNITID }
+               INSTNM={college.INSTNM }
+               CITY={college.CITY  }
+               STABBR={college.STABBR  }
+               TYPE={college.TYPE  }
+               DISTFROMCHICAGO={college.DISTFROMCHICAGO  }
+               IMPLEBARRONS={college.SIMPLEBARRONS  }
+               NETPRICE0_30={college.NETPRICE0_30  }
+               NETPRICE30_48={college.NETPRICE30_48  }
+               PERCENT_MALE={college.PERCENT_MALE  }
+               ADJ6YRGRAD={college.ADJ6YRGRAD  }
+               ADJ6YRGRAD_AA_HISP={college.ADJ6YRGRAD_AA_HISP}
+               RETENTIONAAH={college.RETENTIONAAH  }
+               ADJACT25={college.ADJACT25  }
+               WEBSITE={college.WEBSITE	}
+               MEAN_UNMET_NEED={college.MEAN_UNMET_NEED  }
+               MIN_UNMET_NEED={college.MIN_UNMET_NEED	}
+               MAX_UNMET_NEED={college.MAX_UNMET_NEED  }
+               LOCALE={college.LOCALE  }
+               NUMBER_UNDERGRADS={college.NUMBER_UNDERGRADS  }
+               PUB_PRIVATE={college.PUB_PRIVATE  }
+               MONEYFY14_CATEGORY={college.MONEYFY14_CATEGORY  }
+               NOBLEALUMNI={college.NOBLEALUMNI  }
+               NETPRICE48_75={college.NETPRICE48_75  }
+               PERCENT_PELL={college.PERCENT_PELL  }
+               MONEYFY13={college.MONEYFY13  }
+               MONEYFY14={college.MONEYFY14  }
+               ADJACT50={college.ADJACT50  }
+               */
+               />;
+            })}
+        </tbody>
+      </table>
     );
   }
 });
 
+
+
+
 ReactDOM.render(
-  <Colleges />,
+  <CollegeList />,
   document.getElementById("TableView")
 );
