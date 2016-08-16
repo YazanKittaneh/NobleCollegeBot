@@ -13,11 +13,20 @@ var StudentItem = React.createClass({
   },
 
   render: function() {
+    console.log("returning from StudentItem");
     return (
-        React.createElement('li', {className: 'StudentItem'},
-        React.createElement('h2', {className: 'StudentItem-race'}, this.props.race),
-        React.createElement('a', {className: 'StudentItem-act'}, this.props.act),
-        React.createElement('div', {className: 'StudentItem-gpa'}, this.props.gpa)
+      React.createElement('li', {
+          className: 'StudentItem'
+        },
+        React.createElement('h2', {
+          className: 'StudentItem-race'
+        }, this.props.race),
+        React.createElement('a', {
+          className: 'StudentItem-act'
+        }, this.props.act),
+        React.createElement('div', {
+          className: 'StudentItem-gpa'
+        }, this.props.gpa)
       )
     );
   },
@@ -28,59 +37,65 @@ var StudentForm = React.createClass({
   propTypes: {
     value: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
+    onSubmit: React.PropTypes.func.isRequired,
   },
 
-  handleSubmit: function(e) {
-    e.preventDefault();
-    var race = this.state.race.trim();
-    var act = this.state.act.trim();
-    var gpa = this.state.gpa.trim();
+  onRaceInput: function(e) {
+    this.props.onChange(Object.assign({}, this.props.value, {
+      race: e.target.value
+    }))
+  },
 
-    if (!race || !act || !gpa) {
-      return;
-    }
-    this.setState({race: race, act: act, gpa: gpa});
+  onActInput: function(e) {
+    this.props.onChange(Object.assign({}, this.props.value, {
+      act: e.target.value
+    }))
+  },
+
+  onGPAInput: function(e) {
+    this.props.onChange(Object.assign({}, this.props.value, {
+      gpa: e.target.value
+    }))
+  },
+
+  onSubmit: function(e) {
+    e.preventDefault()
+    this.props.onSubmit()
   },
 
   render: function() {
     var oldStudent = this.props.value;
     var onChange = this.props.onChange;
 
-
+    console.log("returning from StudentForm");
     return (
       React.createElement('form', {
-        className: 'StudentForm',
-        onSubmit: this.handleSubmit
-      },
+          className: 'StudentForm',
+          onSubmit: this.onSubmit,
+        },
         React.createElement('input', {
           type: 'text',
           placeholder: 'Race',
           value: this.props.value.race,
-          onChange: function(e) {
-            onChange(Object.assign({}, oldStudent, {race: e.target.value}));
-          },
+          onInput: this.onRaceInput,
         }),
         React.createElement('input', {
           type: 'text',
           placeholder: 'ACT',
           value: this.props.value.act,
-          onChange: function(e) {
-            onChange(Object.assign({}, oldStudent, {act: e.target.value}));
-          },
+          onInput: this.onActInput,
         }),
         React.createElement('input', {
           type: 'text',
           placeholder: 'GPA',
           value: this.props.value.gpa,
-          onChange: function(e) {
-            onChange(Object.assign({}, oldStudent, {gpa: e.target.value}));
-          },
+          onInput: this.onGpaInput,
         }),
         React.createElement('button', {
-          type: 'submit'
+            type: 'submit'
 
-        },
-        "Get Colleges")
+          },
+          "Get Colleges")
       )
     )
   },
@@ -90,20 +105,30 @@ var StudentFormView = React.createClass({
   propTypes: {
     students: React.PropTypes.array.isRequired,
     newStudent: React.PropTypes.object.isRequired,
+    onNewStudentChange: React.PropTypes.func.isRequired,
+    onNewStudentSubmit: React.PropTypes.func.isRequired,
   },
 
   render: function() {
-    var StudentItemElements = this.props.students
-      .filter(function(student) { return student.act; })
-      .map(function(student) { return React.createElement(StudentItem, student); });
-
+    console.log("returning from StudentFormView");
+    var studentItemElements = this.props.students.map(function(student) {
+      return React.createElement(StudentItem, student);
+    });
     return (
-      React.createElement('div', {className: 'StudentView'},
-        React.createElement('h1', {className: 'StudentView-title'}, "Students"),
-        React.createElement('ul', {className: 'StudentView-list'}, StudentItemElements),
+      React.createElement('div', {
+          className: 'StudentView'
+        },
+        React.createElement('h1', {
+          className: 'StudentView-title'
+        }, "Students"),
+        React.createElement('ul', {
+          className: 'StudentView-list'
+        }, studentItemElements),
         React.createElement(StudentForm, {
           value: this.props.newStudent,
-          onChange: function(student) { console.log(student); },
+          onChange: function(student) {
+            console.log(student);
+          },
         })
       )
     );
@@ -112,24 +137,34 @@ var StudentFormView = React.createClass({
 
 
 
+var students = [{
+  key: 1,
+  name: "James K Nelson",
+  email: "james@jamesknelson.com",
+  description: "Front-end Unicorn"
+}, {
+  key: 2,
+  name: "Jim",
+  email: "jim@example.com"
+}, {
+  key: 3,
+  name: "Joe"
+}, ];
 
-var students = [
-  {key: 1, name: "James K Nelson", email: "james@jamesknelson.com", description: "Front-end Unicorn"},
-  {key: 2, name: "Jim", email: "jim@example.com"},
-  {key: 3, name: "Joe"},
-];
-
-var newStudent = {name: "", email: "", description: ""};
+var newStudent = {
+  name: "",
+  email: "",
+  description: ""
+};
 
 
 ReactDOM.render(
   React.createElement(StudentFormView, {
-  students: students,
-  newStudent: newStudent,
-}),  document.getElementById("Forms")
+    students: students
+    newStudent: newStudent,
+  }), document.getElementById("Forms")
 );
 
-ReactDOM.render(
-  <CollegeList />,
+ReactDOM.render( < CollegeList / > ,
   document.getElementById("TableView")
 );
