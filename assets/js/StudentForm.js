@@ -5,34 +5,6 @@ var CollegeList = require('./CollegeList');
 //var College = React.createFactory(require('./College.js'));
 //CITE: jamesknelson.com/learn-raw-react-ridiculously-simple-forms/
 
-var StudentItem = React.createClass({
-  propTypes: {
-    race: React.PropTypes.string.isRequired,
-    act: React.PropTypes.string.isRequired,
-    gpa: React.PropTypes.string.isRequired,
-  },
-
-  render: function() {
-    console.log("returning from StudentItem");
-    return (
-      React.createElement('li', {
-          className: 'StudentItem'
-        },
-        React.createElement('h2', {
-          className: 'StudentItem-race'
-        }, this.props.race),
-        React.createElement('a', {
-          className: 'StudentItem-act'
-        }, this.props.act),
-        React.createElement('div', {
-          className: 'StudentItem-gpa'
-        }, this.props.gpa)
-      )
-    );
-  },
-});
-
-
 var StudentForm = React.createClass({
   propTypes: {
     value: React.PropTypes.object.isRequired,
@@ -101,40 +73,6 @@ var StudentForm = React.createClass({
   },
 });
 
-var StudentFormView = React.createClass({
-  propTypes: {
-    students: React.PropTypes.array.isRequired,
-    newStudent: React.PropTypes.object.isRequired,
-    onNewStudentChange: React.PropTypes.func.isRequired,
-    onNewStudentSubmit: React.PropTypes.func.isRequired,
-  },
-
-  render: function() {
-    console.log("returning from StudentFormView");
-    var studentItemElements = this.props.students.map(function(student) {
-      return React.createElement(StudentItem, student);
-    });
-    return (
-      React.createElement('div', {
-          className: 'StudentView'
-        },
-        React.createElement('h1', {
-          className: 'StudentView-title'
-        }, "Students"),
-        React.createElement('ul', {
-          className: 'StudentView-list'
-        }, studentItemElements),
-        React.createElement(StudentForm, {
-          value: this.props.newStudent,
-          onChange: function(student) {
-            console.log(student);
-          },
-        })
-      )
-    );
-  },
-});
-
 
 
 var students = [{
@@ -160,7 +98,7 @@ var newStudent = {
 
 ReactDOM.render(
   React.createElement(StudentFormView, {
-    students: students
+    students: students,
     newStudent: newStudent,
   }), document.getElementById("Forms")
 );
@@ -168,3 +106,5 @@ ReactDOM.render(
 ReactDOM.render( < CollegeList / > ,
   document.getElementById("TableView")
 );
+
+module.exports = StudentForm;
