@@ -16,7 +16,7 @@ var StudentItem = React.createClass({
     return (
         React.createElement('li', {className: 'StudentItem'},
         React.createElement('h2', {className: 'StudentItem-race'}, this.props.race),
-        React.createElement('a', {className: 'StudentItem-act', href: 'mailto:'+this.props.act}, this.props.act),
+        React.createElement('a', {className: 'StudentItem-act'}, this.props.act),
         React.createElement('div', {className: 'StudentItem-gpa'}, this.props.gpa)
       )
     );
@@ -30,13 +30,28 @@ var StudentForm = React.createClass({
     onChange: React.PropTypes.func.isRequired,
   },
 
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var race = this.state.race.trim();
+    var act = this.state.act.trim();
+    var gpa = this.state.gpa.trim();
+
+    if (!race || !act || !gpa) {
+      return;
+    }
+    this.setState({race: race, act: act, gpa: gpa});
+  },
+
   render: function() {
     var oldStudent = this.props.value;
     var onChange = this.props.onChange;
 
 
     return (
-      React.createElement('form', {className: 'StudentForm'},
+      React.createElement('form', {
+        className: 'StudentForm',
+        onSubmit: this.handleSubmit
+      },
         React.createElement('input', {
           type: 'text',
           placeholder: 'Race',
@@ -61,7 +76,11 @@ var StudentForm = React.createClass({
             onChange(Object.assign({}, oldStudent, {gpa: e.target.value}));
           },
         }),
-        React.createElement('button', {type: 'submit'}, "Get Colleges")
+        React.createElement('button', {
+          type: 'submit'
+
+        },
+        "Get Colleges")
       )
     )
   },
@@ -93,6 +112,7 @@ var StudentFormView = React.createClass({
 
 
 
+
 var students = [
   {key: 1, name: "James K Nelson", email: "james@jamesknelson.com", description: "Front-end Unicorn"},
   {key: 2, name: "Jim", email: "jim@example.com"},
@@ -108,6 +128,8 @@ ReactDOM.render(
   newStudent: newStudent,
 }),  document.getElementById("Forms")
 );
+
 ReactDOM.render(
-  <CollegeList />
+  <CollegeList />,
+  document.getElementById("TableView")
 );

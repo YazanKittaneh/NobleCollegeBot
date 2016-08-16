@@ -46,7 +46,7 @@ var CollegeList = React.createClass({
     console.log("in the render!");
     console.log("the data: ", this.state.collegelist);
     return (
-    <table>
+    <table className = "table table-striped">
       <tbody>
           {this.state.collegelist.map(function(college, index) {
                return <College key={index} collegedata={college}/>;
@@ -57,11 +57,6 @@ var CollegeList = React.createClass({
   }
 });
 
-
-ReactDOM.render(
-  <CollegeList />,
-  document.getElementById("TableView")
-);
 
 
 module.exports = CollegeList;
