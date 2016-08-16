@@ -32,13 +32,18 @@ def testJS(request):
 """
 STUDENT MODEL CONTROLLERS
 """
-def all_student(request):
-    all_student = Student.objects.all()
-    return render(request, 'CollegeBot/API/all/all_student.html', {'all_student': all_student})
 
 class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = CollegeSerializer
+
+    def get(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        #queryset = get_queryset()
+        queryset = Student.objects.all()[:5]
+        serializer = StudentSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 def student(request, student_id):
     student = Student.objects.get(pk=college_id)
@@ -48,12 +53,6 @@ def student(request, student_id):
 """
 COLLEGE MODEL CONTROLLERS
 """
-'''
-def all_colleges(request):
-    all_colleges = College.objects.all()
-    return render(request, 'CollegeBot/api/all/all_colleges.html', {'all_colleges': all_colleges})
-'''
-
 
 #TODO : I should be able to call the list method to get all the college objects
 # Can be found here: https://www.youtube.com/watch?v=QW_5xCCPWFk
@@ -61,10 +60,14 @@ class CollegeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = College.objects.all()
     serializer_class = CollegeSerializer
 
+
     def get(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
         #queryset = get_queryset()
-        queryset = College.objects.all()
+        #if isinstance(college_id,int):
+        #    queryset = College.objects.get(pk=college_id)
+        #else:
+        queryset = College.objects.all()[:5]
         serializer = CollegeSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -76,13 +79,18 @@ def college(request, college_id):
 """
 COEFFICIENT MODEL CONTROLLERS
 """
-def all_coefficients(request):
-    all_coefficients = Coefficient.objects.all()
-    return render(request, 'CollegeBot/api/all/all_coefficients.html', {'all_coefficients': all_coefficients})
 
 class CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Coefficient.objects.all()
     serializer_class = CoefficientSerializer
+
+    def get(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        #queryset = get_queryset()
+        queryset = Coefficient.objects.all()[:5]
+        serializer = CoefficientSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 def coefficient(request, coefficient_id):
     coefficient = Coefficient.objects.get(pk=coefficient_id)
@@ -91,13 +99,16 @@ def coefficient(request, coefficient_id):
 """
 CUSTOM COEFFICIENT MODEL CONTROLLERS
 """
-def all_custom_coefficients(request):
-    all_custom_coefficients = Custom_Coefficient.objects.all()
-    return render(request, 'CollegeBot/api/all/all_custom_coefficients.html', {'all_custom_coefficients': all_custom_coefficients})
 
 class Custom_CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Custom_Coefficient.objects.all()
     serializer_class = Custom_CoefficientSerializer
+
+    def get(self, request):
+        queryset = Custom_Coefficient.objects.all()[:5]
+        serializer = Custom_CoefficientSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 def custom_coefficient(request, custom_coefficient_id):
     custom_coefficient =  Custom_Coefficient.objects.get(pk=custom_coefficient_id)

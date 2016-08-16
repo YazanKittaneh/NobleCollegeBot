@@ -2,7 +2,7 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 
 
- var College = React.createClass({
+var College = React.createClass({
   getInitialState: function() {
     return {
       collegedata: []
@@ -11,47 +11,48 @@ var ReactDOM = require('react-dom')
 
 
   render: function() {
+    console.log("in the COLLEGE render!");
+    console.log("College Data: ", this.props.collegedata);
+    return (
 
-      if (!this.props.collegeData) {
-          return "Doesn't work";
-      }
-      return (
         <tr>
-          <td>{ this.props.collegeData.UNITID }</td>
-          <td>{ this.props.collegeData.INSTNM }</td>
-          <td>{ this.props.collegeData.CITY }</td>
-          <td>{ this.props.collegeData.UNITID }</td>
-          <td>{ this.props.collegeData.INSTNM }</td>
-          <td>{ this.props.collegeData.CITY  }</td>
-          <td>{ this.props.collegeData.STABBR  }</td>
-          <td>{ this.props.collegeData.TYPE  }</td>
-          <td>{ this.props.collegeData.DISTFROMCHICAGO  }</td>
-          <td>{ this.props.collegeData.SIMPLEBARRONS  }</td>
-          <td>{ this.props.collegeData.NETPRICE0_30  }</td>
-          <td>{ this.props.collegeData.NETPRICE30_48  }</td>
-          <td>{ this.props.collegeData.PERCENT_MALE  }</td>
-          <td>{ this.props.collegeData.ADJ6YRGRAD  }</td>
-          <td>{ this.props.collegeData.ADJ6YRGRAD_AA_HISP}</td>
-          <td>{ this.props.collegeData.RETENTIONAAH  }</td>
-          <td>{ this.props.collegeData.ADJACT25  }</td>
-          <td>{ this.props.collegeData.WEBSITE	}</td>
-          <td>{ this.props.collegeData.MEAN_UNMET_NEED  }</td>
-          <td>{ this.props.collegeData.MIN_UNMET_NEED	}</td>
-          <td>{ this.props.collegeData.MAX_UNMET_NEED  }</td>
-          <td>{ this.props.collegeData.LOCALE  }</td>
-          <td>{ this.props.collegeData.NUMBER_UNDERGRADS  }</td>
-          <td>{ this.props.collegeData.PUB_PRIVATE  }</td>
-          <td>{ this.props.collegeData.MONEYFY14_CATEGORY  }</td>
-          <td>{ this.props.collegeData.NOBLEALUMNI  }</td>
-          <td>{ this.props.collegeData.NETPRICE48_75  }</td>
-          <td>{ this.props.collegeData.PERCENT_PELL  }</td>
-          <td>{ this.props.collegeData.MONEYFY13  }</td>
-          <td>{ this.props.collegeData.MONEYFY14  }</td>
-          <td>{ this.props.collegeData.ADJACT50  }</td>
+          <td>{ this.props.collegedata.UNITID }</td>
+          <td>{ this.props.collegedata.INSTNM }</td>
+          <td>{ this.props.collegedata.CITY }</td>
+          <td>{ this.props.collegedata.UNITID }</td>
+          <td>{ this.props.collegedata.INSTNM }</td>
+          <td>{ this.props.collegedata.CITY  }</td>
+          <td>{ this.props.collegedata.STABBR  }</td>
+          <td>{ this.props.collegedata.TYPE  }</td>
+          <td>{ this.props.collegedata.DISTFROMCHICAGO  }</td>
+          <td>{ this.props.collegedata.SIMPLEBARRONS  }</td>
+          <td>{ this.props.collegedata.NETPRICE0_30  }</td>
+          <td>{ this.props.collegedata.NETPRICE30_48  }</td>
+          <td>{ this.props.collegedata.PERCENT_MALE  }</td>
+          <td>{ this.props.collegedata.ADJ6YRGRAD  }</td>
+          <td>{ this.props.collegedata.ADJ6YRGRAD_AA_HISP}</td>
+          <td>{ this.props.collegedata.RETENTIONAAH  }</td>
+          <td>{ this.props.collegedata.ADJACT25  }</td>
+          <td>{ this.props.collegedata.WEBSITE	}</td>
+          <td>{ this.props.collegedata.MEAN_UNMET_NEED  }</td>
+          <td>{ this.props.collegedata.MIN_UNMET_NEED	}</td>
+          <td>{ this.props.collegedata.MAX_UNMET_NEED  }</td>
+          <td>{ this.props.collegedata.LOCALE  }</td>
+          <td>{ this.props.collegedata.NUMBER_UNDERGRADS  }</td>
+          <td>{ this.props.collegedata.PUB_PRIVATE  }</td>
+          <td>{ this.props.collegedata.MONEYFY14_CATEGORY  }</td>
+          <td>{ this.props.collegedata.NOBLEALUMNI  }</td>
+          <td>{ this.props.collegedata.NETPRICE48_75  }</td>
+          <td>{ this.props.collegedata.PERCENT_PELL  }</td>
+          <td>{ this.props.collegedata.MONEYFY13  }</td>
+          <td>{ this.props.collegedata.MONEYFY14  }</td>
+          <td>{ this.props.collegedata.ADJACT50  }</td>
         </tr>
       )
     }
   });
+
+module.exports = College;
 
   /*
 this.setState({STABBR  }</td>

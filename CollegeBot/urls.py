@@ -25,24 +25,24 @@ urlpatterns = [
     #non '/' ending
     url(r'^coefficient/(?P<coefficient_id>\d+)$', 'CollegeBot.views.coefficient'),
     url(r'^api/coefficient/(?P<pk>\d+)$', views.CoefficientDetail.as_view()),
-    url(r'^api/coefficient/all$', 'CollegeBot.views.all_coefficients'),
+    url(r'^api/coefficient/all$', views.CoefficientDetail.as_view()),
 
     # '/' ending
     url(r'^coefficient/(?P<coefficient_id>\d+)/$', 'CollegeBot.views.coefficient'),
     url(r'^api/coefficient/(?P<pk>\d+)/$', views.CoefficientDetail.as_view()),
-    url(r'^api/coefficient/all/$', 'CollegeBot.views.all_coefficients'),
+    url(r'^api/coefficient/all/$', views.CoefficientDetail.as_view()),
 
 
     ###Custom Coefficient API urls###
     #non '/' ending
     url(r'^custom_coefficient/(?P<custom_coefficient_id>\d+)$', 'CollegeBot.views.custom_coefficient'),
     url(r'^api/custom_coefficient/(?P<pk>\d+)$', views.Custom_CoefficientDetail.as_view()),
-    url(r'^custom_coefficient/all$', 'CollegeBot.views.all_custom_coefficients'),
+    url(r'^api/custom_coefficient/all$', views.Custom_CoefficientDetail.as_view()),
 
 
     url(r'^custom_coefficient/(?P<custom_coefficient_id>\d+)/$', 'CollegeBot.views.custom_coefficient'),
     url(r'^api/custom_coefficient/(?P<pk>\d+)/$', views.Custom_CoefficientDetail.as_view()),
-    url(r'^custom_coefficient/all/$', 'CollegeBot.views.all_custom_coefficients'),
+    url(r'^api/custom_coefficient/all/$', views.Custom_CoefficientDetail.as_view()),
 
 ]
 

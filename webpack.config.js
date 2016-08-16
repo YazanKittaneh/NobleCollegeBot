@@ -9,7 +9,7 @@ module.exports = {
     //the entry point we created earlier. Note that './' means
     //your current directory. You don't have to specify the extension  now,
     //because you will specify extensions later in the `resolve` section
-    entry: './assets/js/test6', //changed it to test because our .js file will be named test
+    entry: './assets/js/StudentForm', //changed it to test because our .js file will be named test
 
     output: {
         //where you want your compiled bundle to be stored
