@@ -1,5 +1,7 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
+var CollegeList = require('./CollegeList');
+
 //var College = React.createFactory(require('./College.js'));
 //CITE: jamesknelson.com/learn-raw-react-ridiculously-simple-forms/
 
@@ -104,6 +106,8 @@ ReactDOM.render(
   React.createElement(StudentFormView, {
   students: students,
   newStudent: newStudent,
-}),
-  document.getElementById("TableView")
+}),  document.getElementById("Forms")
+);
+ReactDOM.render(
+  <CollegeList />
 );

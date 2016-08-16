@@ -58,5 +58,10 @@ var CollegeList = React.createClass({
 });
 
 
+ReactDOM.render(
+  <CollegeList />,
+  document.getElementById("TableView")
+);
 
-tatutatus
+
+module.exports = CollegeList;
