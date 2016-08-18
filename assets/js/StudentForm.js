@@ -45,50 +45,60 @@ var StudentForm = React.createClass({
     CollegeList.changeValues();
   },
 
+  onChangeRace: function(e) {
+    onChange(Object.assign({}, oldStudent, {
+      race: e.target.value
+    }));
+  },
+
+  onChangeAct: function(e) {
+    onChange(Object.assign({}, oldStudent, {
+      act: e.target.value
+    }));
+  },
+
+  onChangeGpa: function(e) {
+    onChange(Object.assign({}, oldStudent, {
+      gpa: e.target.value
+    }));
+  },
+
   render: function() {
     var oldStudent = this.props.value;
     var onChange = this.props.onChange;
 
 
-    return (
-      React.createElement('form', {
-          className: 'StudentForm'
-        },
-        React.createElement('input', {
-          type: 'text',
-          placeholder: 'Race',
-          value: this.props.value.race,
-          onChange: function(e) {
-            onChange(Object.assign({}, oldStudent, {
-              race: e.target.value
-            }));
-          },
-        }),
-        React.createElement('input', {
-          type: 'text',
-          placeholder: 'ACT',
-          value: this.props.value.act,
-          onChange: function(e) {
-            onChange(Object.assign({}, oldStudent, {
-              act: e.target.value
-            }));
-          },
-        }),
-        React.createElement('input', {
-          type: 'text',
-          placeholder: 'GPA',
-          value: this.props.value.gpa,
-          onChange: function(e) {
-            onChange(Object.assign({}, oldStudent, {
-              gpa: e.target.value
-            }));
-          },
-        }),
-        React.createElement('button', {
-          type: 'submit',
-          onSubmit: this.handleSubmit,
-        }, "Get Colleges")
-      )
+    return ( < form action = ""
+      onSubmit = {
+        this.handleSubmit
+      }
+      className: 'StudentForm' >
+      < input text = "text"
+      placeholder = 'Race'
+      value = {
+        this.props.value.race
+      }
+      onChage = {
+        this.onChangeRace
+      }
+      /> < input text = "text"
+      placeholder = 'Act'
+      value = {
+        this.props.value.act
+      }
+      onChage = {
+        this.onChangeAct
+      }
+      /> < input text = "text"
+      placeholder = 'Gpa'
+      value = {
+        this.props.value.gpa
+      }
+      onChage = {
+        this.onChangeGpa
+      }
+      /> < button className = "btn btn-primary"
+      type = "submit" > Send your project info < /button>
     )
   },
 });
