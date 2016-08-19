@@ -1,6 +1,5 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
-var CollegeList = require('./CollegeList');
 
 //var College = React.createFactory(require('./College.js'));
 //CITE: jamesknelson.com/learn-raw-react-ridiculously-simple-forms/
@@ -37,6 +36,7 @@ var StudentForm = React.createClass({
   propTypes: {
     value: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
+    changeValues: React.PropTypes.func,
   },
 
   handleSubmit: function(event) {
@@ -72,17 +72,17 @@ var StudentForm = React.createClass({
 
     return (
       <form action="" onSubmit={this.handleSubmit} className='StudentForm' >
-        <input text = "text"
+        <input
           placeholder = 'Race'
           value = {this.props.value.race}
           onChange = {this.onChangeRace}
         />
-        < input text = "text"
+        < input
           placeholder = 'Act'
           value = {this.props.value.act}
           onChange = {this.onChangeAct}
         />
-      < input text = "text"
+      < input
         placeholder = 'Gpa'
         value = {this.props.value.gpa}
         onChange = {this.onChangeGpa}
@@ -99,6 +99,8 @@ var StudentFormView = React.createClass({
   propTypes: {
     students: React.PropTypes.array.isRequired,
     newStudent: React.PropTypes.object.isRequired,
+    changeValues: React.PropTypes.func,
+
   },
 
 
@@ -126,6 +128,7 @@ var StudentFormView = React.createClass({
           onChange: function(student) {
             console.log(student);
           },
+          changeValues: this.props.changeValues,
         })
       )
     );
@@ -155,16 +158,4 @@ var newStudent = {
 };
 
 
-ReactDOM.render(
-  React.createElement(StudentFormView, {
-    students: students,
-    newStudent: newStudent,
-  }),
-  document.getElementById("Forms")
-);
-
-ReactDOM.render( < CollegeList /> ,
-  document.getElementById("TableView")
-);
-
-module.exports = StudentForm;
+module.exports = StudentFormView;
