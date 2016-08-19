@@ -1,11 +1,30 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var College = require('./College');
+//var StudentForm = require('./StudentForm');
 //var College = React.createFactory(require('./College.js'));
 
 
 var CollegeList = React.createClass({
+  statics: {
 
+  },
+
+  changeValues: function() {
+    console.log("Change values function called!");
+    var tempCollegeArr = [];
+
+    this.state.collegelist.map(function(college) {
+      college.CITY = "Kentucky";
+      tempCollegeArr.add(college);
+      console.log(college);
+    });
+    return (
+      this.setState({
+        collegelist: tempCollegeArr
+      })
+    );
+  },
   /* run AJAX call to the Django API */
   loadCollegData: function() {
     var countUrl = "api/college/all";
@@ -43,36 +62,21 @@ var CollegeList = React.createClass({
     console.log("componentWillUnmount");
   },
 
-  changeValues: function() {
-    console.log("Change values function called!");
-    var tempCollegeArr = [];
-
-    this.state.collegelist.map(function(college) {
-      college.CITY = "Kentucky";
-      tempCollegeArr.add(college);
-      console.log(college);
-    });
-    return (
-      this.setState({
-        collegelist: tempCollegeArr
-      })
-    );
-  },
 
   render: function() {
     console.log("the data: ", this.state.collegelist);
-    return ( < table className = "table table-striped" >
-      < tbody > {
-        this.state.collegelist.map(function(college, index) {
-          return <College key = {
-            index
+    return (
+      <div>
+        <StudentForm changeValues={this.changeValues.bind(this)} />
+        < table className = "table table-striped" >
+          < tbody > {
+          this.state.collegelist.map(function(college, index) {
+            return <College key={index}  collegedata = {college}/>;
+          })
           }
-          collegedata = {
-            college
-          }
-          />;
-        })
-      } < /tbody> < /table >
+          </tbody>
+        </table >
+      </div>
     );
   }
 });
