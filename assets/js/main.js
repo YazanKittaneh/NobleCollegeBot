@@ -1,5 +1,24 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var College = require('./College');
-var CollegeList = require('./CollegeList');=
-var StudentForm = require('./StudentForm');
+var CollegeList = require('./CollegeList');
+var StudentForm = require('./StudentFormView');
+
+var Main = React.createClass({
+  statics: {
+  },
+
+  render: function() {
+    return (
+      <div>
+        <StudentFormView changeValues={this.changeValues} students={students} newStudent={newStudent} />
+      </div>
+      <CollegeList/>
+    );
+  }
+});
+
+ReactDOM.render(
+  <Main /> ,
+  document.getElementById("Main")
+);

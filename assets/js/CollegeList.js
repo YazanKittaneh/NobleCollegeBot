@@ -1,17 +1,12 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var College = require('./College');
-var StudentForm = require('./StudentForm');
-//var StudentFormView = require('./StudentForm');
-
-//var College = React.createFactory(require('./College.js'));
-
+var StudentFormView = require('./StudentFormView');
 
 var CollegeList = React.createClass({
   statics: {
 
   },
-
   //Function to change values of the table. Proves that I can pass along functions
   //Between components
   changeValues: function() {
@@ -92,7 +87,6 @@ var CollegeList = React.createClass({
     console.log("the data: ", this.state.collegelist);
     return (
       <div>
-        <StudentForm changeValues={this.changeValues} students={students} newStudent={newStudent} />
         < table className = "table table-striped" >
           < tbody > {
           this.state.collegelist.map(function(college, index) {
@@ -108,7 +102,7 @@ var CollegeList = React.createClass({
 
 ReactDOM.render(
   <CollegeList /> ,
-  document.getElementById("TableView")
+  document.getElementById("Table")
 );
 
 module.exports = CollegeList;

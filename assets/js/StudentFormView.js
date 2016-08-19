@@ -4,25 +4,6 @@ var StudentForm = require('./StudentForm')
 var StudentItem = require('./StudentItem')
 
 
-var students = [{
-  key: 1,
-  name: "James K Nelson",
-  email: "james@jamesknelson.com",
-  description: "Front-end Unicorn"
-}, {
-  key: 2,
-  name: "Jim",
-  email: "jim@example.com"
-}, {
-  key: 3,
-  name: "Joe"
-}, ];
-
-var newStudent = {
-  name: "",
-  email: "",
-  description: ""
-};
 
 
 var StudentFormView = React.createClass({
@@ -64,3 +45,31 @@ var StudentFormView = React.createClass({
     );
   },
 });
+
+
+var students = [{
+  key: 1,
+  name: "James K Nelson",
+  email: "james@jamesknelson.com",
+  description: "Front-end Unicorn"
+}, {
+  key: 2,
+  name: "Jim",
+  email: "jim@example.com"
+}, {
+  key: 3,
+  name: "Joe"
+}, ];
+
+var newStudent = {
+  name: "",
+  email: "",
+  description: ""
+};
+
+ReactDOM.render(
+  <StudentFormView  students={students}  newStudent={newStudent}/> ,
+  document.getElementById("Form")
+);
+
+module.exports = StudentFormView;

@@ -76,4 +76,4 @@ var StudentForm = React.createClass({
 
 
 
-module.exports = StudentFormView;
+module.exports = StudentForm;
