@@ -1,1 +1,1 @@
-web: gunicorn noblebot.wsgi --log-file -
+web: gunicorn --pythonpath  ./NobleBot NobleBot.wsgi --log-file -
