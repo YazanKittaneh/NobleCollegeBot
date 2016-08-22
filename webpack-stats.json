@@ -1,1 +1,1 @@
-{"status":"error","error":"ModuleBuildError","message":"Module build failed: Error: ENOENT: no such file or directory, open '/Users/Mac/git/NobleBot/assets/js/Main.js'\n    at Error (native)"}
+{"status":"done","chunks":{"main":[{"name":"main-e953b584422fe45da131.js","path":"/Users/Mac/git/NobleBot/assets/bundles/main-e953b584422fe45da131.js"}]}}
