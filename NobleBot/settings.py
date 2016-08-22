@@ -24,10 +24,10 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '%n&ztfblhecd90_92yn=*q%wd-pv3qo8fiz3bw5xxx@etgu(b+'
+SECRET_KEY = '%n&ztfblhecd90_92yn=*q%wd-pv3qo8fiz3bw5xxx@etgu(b+'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
+#SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'NobleBot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-'''
+
 DATABASES = {
     #'default': {
     #    'ENGINE': 'django.db.backends.sqlite3',
@@ -107,6 +107,7 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
