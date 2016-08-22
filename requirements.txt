@@ -1,0 +1,13 @@
+dj-database-url==0.4.1
+Django==1.9.7
+django-postgres-copy==0.0.8
+django-realtime==1.1
+django-webpack-loader==0.3.3
+djangorestframework==3.4.0
+gunicorn==19.6.0
+jsonpickle==0.9.3
+psycopg2==2.6.2
+py==1.4.31
+pytest==2.9.2
+pytest-django==2.9.1
+selenium==2.53.6
