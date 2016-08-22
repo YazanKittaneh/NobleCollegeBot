@@ -83,9 +83,7 @@ WSGI_APPLICATION = 'NobleBot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-#db_from_env = dj_database_url.config()
-#DATABASES['default'].update(db_from_env)
-
+'''
 DATABASES = {
     #'default': {
     #    'ENGINE': 'django.db.backends.sqlite3',
@@ -100,6 +98,14 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
         }
+}
+'''
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 # Password validation
@@ -146,6 +152,7 @@ STATICFILES_DIRS = [
     #'/var/www/static/',
 ]
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
