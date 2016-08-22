@@ -12,8 +12,8 @@ var Main = React.createClass({
     return (
       <div>
         <StudentFormView changeValues={this.changeValues} students={students} newStudent={newStudent} />
+        <CollegeList/>
       </div>
-      <CollegeList/>
     );
   }
 });
