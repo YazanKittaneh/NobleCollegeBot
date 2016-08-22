@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main-a7c10f74811b3e263a52.js","path":"/Users/Mac/git/NobleBot/assets/bundles/main-a7c10f74811b3e263a52.js"}]}}
+{"status":"error","error":"ModuleBuildError","message":"Module build failed: Error: ENOENT: no such file or directory, open '/Users/Mac/git/NobleBot/assets/js/Main.js'\n    at Error (native)"}
