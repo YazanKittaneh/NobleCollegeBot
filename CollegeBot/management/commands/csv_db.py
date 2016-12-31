@@ -3,6 +3,7 @@ from postgres_copy import CopyMapping
 from django.core.management.base import BaseCommand
 
 
+#Maps CSV data onto college objects and stores them on PostGres
 class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):

@@ -1,6 +1,7 @@
 # View controller for the django app. The controller section handles the api
 # calls for each
 # created by Yazan Kittaneh 07-12-2016
+#cite for serializers: https://www.youtube.com/watch?v=QW_5xCCPWFk
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,29 +11,16 @@ from .serializers import CollegeSerializer, CoefficientSerializer, Custom_Coeffi
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-def index(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
-    query_results = College.objects.all()
-    #return render_template_to_response("CollegeBot/index.html", {"my_data": query_results})
-    return render(request, 'CollegeBot/index.html', {'query_results': query_results})
-
-def coefficient(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
-    query_results = Coefficient.objects.all()
-    return render(request, 'CollegeBot/coefficient.html', {'query_results': query_results})
-
-def custom(request): #http://lethain.com/two-faced-django-part-5-jquery-ajax/
-    query_results = Custom_Coefficient.objects.all()
-    return render(request, 'CollegeBot/custom_coefficient.html', {'query_results': query_results})
-
-
 def testJS(request):
     return render(request, 'CollegeBot/test.html')
-
 
 
 """
 STUDENT MODEL CONTROLLERS
 """
 
+#Searilizes the Student objects so you can call their JSON data one by one
+#or all at once
 class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = CollegeSerializer
@@ -54,8 +42,8 @@ def student(request, student_id):
 COLLEGE MODEL CONTROLLERS
 """
 
-#TODO : I should be able to call the list method to get all the college objects
-# Can be found here: https://www.youtube.com/watch?v=QW_5xCCPWFk
+#Searilizes the College objects so you can call their JSON data one by one
+#or all at once
 class CollegeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = College.objects.all()
     serializer_class = CollegeSerializer
@@ -80,6 +68,8 @@ def college(request, college_id):
 COEFFICIENT MODEL CONTROLLERS
 """
 
+#Searilizes the Coefficient objects so you can call their JSON data one by one
+#or all at once
 class CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Coefficient.objects.all()
     serializer_class = CoefficientSerializer
@@ -100,6 +90,8 @@ def coefficient(request, coefficient_id):
 CUSTOM COEFFICIENT MODEL CONTROLLERS
 """
 
+#Searilizes the Custom Coefficient objects so you can call their JSON data one by one
+#or all at once
 class Custom_CoefficientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Custom_Coefficient.objects.all()
     serializer_class = Custom_CoefficientSerializer

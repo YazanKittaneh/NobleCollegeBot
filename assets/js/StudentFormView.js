@@ -1,28 +1,17 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var StudentForm = require('./StudentForm')
-var StudentItem = require('./StudentItem')
 
 
 
 
 var StudentFormView = React.createClass({
   propTypes: {
-    students: React.PropTypes.array.isRequired,
-    newStudent: React.PropTypes.object.isRequired,
     changeValues: React.PropTypes.func,
-
   },
 
 
   render: function() {
-    var StudentItemElements = this.props.students
-      .filter(function(student) {
-        return student.act;
-      })
-      .map(function(student) {
-        return React.createElement(StudentItem, student);
-      });
 
     return (
       React.createElement('div', {
@@ -31,9 +20,6 @@ var StudentFormView = React.createClass({
         React.createElement('h1', {
           className: 'StudentView-title'
         }, "Students"),
-        React.createElement('ul', {
-          className: 'StudentView-list'
-        }, StudentItemElements),
         React.createElement(StudentForm, {
           value: this.props.newStudent,
           onChange: function(student) {
@@ -68,8 +54,8 @@ var newStudent = {
 };
 
 ReactDOM.render(
-  <StudentFormView  students={students}  newStudent={newStudent}/> ,
+  <StudentFormView /> ,
   document.getElementById("Form")
 );
 
-module.exports = StudentFormView;
+module.exports = StudentFormView; //required to reference outside of Component

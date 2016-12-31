@@ -1,6 +1,5 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
-var StudentForm = require('./StudentItem')
 
 //var College = React.createFactory(require('./College.js'));
 //CITE: jamesknelson.com/learn-raw-react-ridiculously-simple-forms/
@@ -18,6 +17,7 @@ var StudentForm = React.createClass({
                                         //button submit press
   },
 
+  //function handles onClick logic for submit button
   handleSubmit: function(event) {
     console.log("handleSubmit called!");
     event.preventDefault(); //required
@@ -26,28 +26,30 @@ var StudentForm = React.createClass({
   },
 
 
+  //listener for changes in the input for Student Race
   onChangeRace: function(e) {
     onChange(Object.assign({}, oldStudent, {
       race: e.target.value
     }));
   },
 
+  //listener for changes in the input for Student ACT
   onChangeAct: function(e) {
     onChange(Object.assign({}, oldStudent, {
       act: e.target.value
     }));
   },
 
+  //listener for changes in the input for Student GPA
   onChangeGpa: function(e) {
     onChange(Object.assign({}, oldStudent, {
       gpa: e.target.value
     }));
   },
 
-  render: function() {
-    var oldStudent = this.props.value;
-    var onChange = this.props.onChange;
 
+  render: function() {
+    var onChange = this.props.onChange;
 
     return (
       <form action="" onSubmit={this.handleSubmit} className='StudentForm' >
@@ -76,4 +78,4 @@ var StudentForm = React.createClass({
 
 
 
-module.exports = StudentForm;
+module.exports = StudentForm; //required to reference outside of Component

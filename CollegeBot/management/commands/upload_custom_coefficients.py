@@ -2,7 +2,7 @@ from CollegeBot.models import Custom_Coefficient
 from postgres_copy import CopyMapping
 from django.core.management.base import BaseCommand
 
-
+#Maps CSV data onto Custom Coefficient objects and stores them on PostGres
 class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):

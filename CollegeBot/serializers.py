@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Student, College, Coefficient, Custom_Coefficient
 
+#Serializer classes that are called in the views.py 
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:

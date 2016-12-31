@@ -4,9 +4,6 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     url(r'^$', 'CollegeBot.views.testJS'),
-    #url(r'^coefficient$', views.coefficient, name='coefficient'),
-    #url(r'^custom$', views.custom, name='custom'),
-
     ####College API urls###
     #non '/' ending
     url(r'^college/(?P<college_id>\d+)$', 'CollegeBot.views.college'),
@@ -46,4 +43,5 @@ urlpatterns = [
 
 ]
 
+#lets suffixes be called with URL's (e.i: http//...../collegebot/college/1/.json)
 urlpatterns = format_suffix_patterns(urlpatterns)
