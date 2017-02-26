@@ -7,11 +7,26 @@ var StudentForm = require('./StudentFormView');
 var Main = React.createClass({
   statics: {
   },
+  propTypes: {
+    collegeList: []
+  },
+  defaultProps: {
+    collegeList: []
+  },
+
+  loadData: function(data) {
+    this.setState({
+      collegeList: data
+    });
+  },
 
   render: function() {
     return (
       <div>
-        <StudentFormView changeValues={this.changeValues} students={students} newStudent={newStudent} />
+        <StudentFormView
+          changeValues={this.changeValues}
+          students={this.foobar}
+          newStudent={newStudent} />
         <CollegeList/>
       </div>
     );

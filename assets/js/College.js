@@ -9,7 +9,6 @@ var College = React.createClass({
     };
   },
 
-
   render: function() {
     console.log("in the COLLEGE render!");
     console.log("College Data: ", this.props.collegedata);
