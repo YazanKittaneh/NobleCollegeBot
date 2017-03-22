@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main-4fdbbafd7deb9f00c876.js","path":"/Users/Mac/git/NobleBot/assets/bundles/main-4fdbbafd7deb9f00c876.js"}]}}
+{"status":"error","error":"ModuleNotFoundError","message":"Module not found: Error: Can't resolve 'react/lib/ReactCurrentOwner' in '/Users/Mac/git/node_modules/react-dom/lib'"}

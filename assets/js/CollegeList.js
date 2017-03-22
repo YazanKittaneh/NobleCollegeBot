@@ -6,7 +6,7 @@ var StudentFormView = require('./StudentFormView');
 var CollegeList = React.createClass({
   statics: {
 
-  };
+  },
   //Function to change values of the table. Proves that I can pass along functions
   //Between components
   changeValues: function() {
@@ -23,7 +23,7 @@ var CollegeList = React.createClass({
         collegelist: tempCollegeArr
       })
     );
-  };
+  },
 
   /* run AJAX call to the Django API */
   loadCollegeData: function() {
@@ -55,7 +55,7 @@ var CollegeList = React.createClass({
       }.bind(this)
     });
     console.log("done with ajax # ");
-  };
+  },
 
   getInitialState: function() {
     return {
@@ -71,21 +71,21 @@ var CollegeList = React.createClass({
         ethnicity:""
       }
     };
-  };
+  },
 
   //this function executes an async task while react is rendering
   componentDidMount: function() {
     console.log("componentDidMount");
-  };
+  },
 
   componentWillMount: function() {
     this.loadCollegeData();
-  };
+  },
 
   //necessary method for unmounting async task
   componentWillUnmount: function() {
     console.log("componentWillUnmount");
-  };
+  },
 
   handleActInput: function(act){
     this.setState({
@@ -101,7 +101,7 @@ var CollegeList = React.createClass({
         ethnicity:this.state.ethnicity
       }
     });
-  }.bind(this);
+  }.bind(this),
 
   handleGpaInput: function(gpa){
     this.setState({
@@ -117,7 +117,7 @@ var CollegeList = React.createClass({
         ethnicity:this.state.ethnicity
       }
     });
-  }.bind(this);
+  }.bind(this),
 
   handleEthnicityInput: function(ethnicity){
     this.setState({
@@ -133,7 +133,7 @@ var CollegeList = React.createClass({
         ethnicity:ethnicity
       }
     });
-  }.bind(this);
+  }.bind(this),
 
 
   isReachSchool: function(college){
@@ -145,7 +145,7 @@ var CollegeList = React.createClass({
     //if the user's information qualifies as a reach school,
     //return true else false
     return false;
-  }
+  },
 
   isMatchSchool: function(college){
     var ACT = this.state.act;
@@ -156,7 +156,7 @@ var CollegeList = React.createClass({
     //if the user's information qualifies as a reach school,
     //return true else false
     return false;
-  }
+  },
 
   isSafetySchool: function(college){
     var ACT = this.state.act;
@@ -167,7 +167,7 @@ var CollegeList = React.createClass({
     //if the user's information qualifies as a reach school,
     //return true else false
     return false;
-  }
+  },
 
   isSecureSchool: function(college){
     var ACT = this.state.act;
@@ -178,7 +178,7 @@ var CollegeList = React.createClass({
     //if the user's information qualifies as a reach school,
     //return true else false
     return false;
-  }
+  },
 
   chooseTypeOfColleges: function(type){
     var arr = [], schoolFunc;
@@ -201,7 +201,7 @@ var CollegeList = React.createClass({
     }
     //for reac schools
     for(var i = 0; i < collegeList.length; i++) {
-        if(schoolFunc(collegeList[i]) {
+        if(schoolFunc(collegeList[i])) {
           arr.push(collegeList[i]);
         }
     }
@@ -221,7 +221,7 @@ var CollegeList = React.createClass({
       }
     });
 
-  }
+  },
 
   handleUserInputChange: function(name, input){
 
@@ -231,7 +231,7 @@ var CollegeList = React.createClass({
         } else {
           return stateValue
         }
-      }
+      },
 
       this.setState({
         collegelist: this.state.collegelist,
@@ -247,7 +247,7 @@ var CollegeList = React.createClass({
         }
       });
 
-  }.bind(this);
+  }.bind(this),
 
     handleTabButtonClick: function(type){
       this.setState({
@@ -263,7 +263,7 @@ var CollegeList = React.createClass({
           ethnicity:ethnicity
         }
       });
-    }.bind(this);
+    }.bind(this),
 
   render: function() {
 
@@ -323,6 +323,7 @@ var CollegeList = React.createClass({
 var UserTextInput = React.createClass({
     render: function() {
       return (
+        <div>
         <label for="act">{this.props.value}</label>
           <input name={this.props.name}
             type="text"
@@ -330,11 +331,10 @@ var UserTextInput = React.createClass({
             value={this.props.value}
             onChange={function(e){
               this.handleChange(this.props.name, e.target.value);
-            }}/>
+            }}></input>
         </div>
-    )};
-
-
+    );
+  }
 });
 
 /**
@@ -347,14 +347,15 @@ var TabButton = React.createClass({
       <button onClick={function(){
         this.handleClick(this.props.type);
       }}>{this.props.prompt}</button>
-    )};
-
+    );
+  }
 });
 
 
 ReactDOM.render(
   <CollegeList /> ,
-  document.getElementById("Table")
+  document.getElementById("Main")
 );
+
 
 module.exports = CollegeList; //required to reference outside of Component
