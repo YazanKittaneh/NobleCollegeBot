@@ -1,10 +1,10 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var College = require('./College');
-var StudentFormView = require('./StudentFormView');
+//var StudentFormView = require('./StudentFormView');
 
 var CollegeList = React.createClass({
-  statics: {
+  statics:    {
 
   },
   //Function to change values of the table. Proves that I can pass along functions
@@ -221,7 +221,7 @@ var CollegeList = React.createClass({
       }
     });
 
-  },
+  }.bind(this),
 
   handleUserInputChange: function(name, input){
 
@@ -304,7 +304,7 @@ var CollegeList = React.createClass({
           <TabButton prompt="Reach Schools" type="reach" handleClick={this.handleTabButtonClick}/>
           <TabButton prompt="Match Schools" type="match" handleClick={this.handleTabButtonClick}/>
           <TabButton prompt="Safety Schools" type="safety" handleClick={this.handleTabButtonClick}/>
-          <TabButton prompt="Secure Schools" type="secure" handleClick={this.handleTabButtonClick}/>
+          <TabButton prompt="Secure Schools" type="secure" handleC lick={this.handleTabButtonClick}/>
         </div>
         <div className="resultsTable"  style="display:bloc; float:left; width:100%">
           <table className = "table table-striped" >
